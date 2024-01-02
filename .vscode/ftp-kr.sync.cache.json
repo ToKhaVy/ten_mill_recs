@@ -1,7 +1,67 @@
 {
   "ftp://gdit_ftp@192.168.1.228": {
     "htdocs": {
-      "ten_mill_recs": {}
+      "ten_mill_recs": {
+        "README.md": {
+          "type": "-",
+          "size": 23,
+          "lmtime": 0,
+          "modified": false
+        },
+        "composer.json": {
+          "type": "-",
+          "size": 58,
+          "lmtime": 0,
+          "modified": false
+        },
+        "composer.lock": {
+          "type": "-",
+          "size": 588,
+          "lmtime": 0,
+          "modified": false
+        },
+        "create_file.php": {
+          "type": "-",
+          "size": 1234,
+          "lmtime": 1704171746588.937,
+          "modified": false
+        },
+        "css": {},
+        "data": {
+          "user.csv": {
+            "type": "-",
+            "size": 0,
+            "lmtime": 1704171702054.405,
+            "modified": false
+          }
+        },
+        "db_connect.php": {
+          "type": "-",
+          "size": 376,
+          "lmtime": 0,
+          "modified": false
+        },
+        "index.php": {
+          "type": "-",
+          "size": 2181,
+          "lmtime": 0,
+          "modified": false
+        },
+        "index_test.php": {
+          "type": "-",
+          "size": 2184,
+          "lmtime": 0,
+          "modified": false
+        },
+        "js": {},
+        "test1.php": {
+          "type": "-",
+          "size": 16,
+          "lmtime": 0,
+          "modified": false
+        },
+        "vendor": {}
+      }
     }
   },
   "$version": 1
