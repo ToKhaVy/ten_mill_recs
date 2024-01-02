@@ -15,7 +15,7 @@ $faker = Factory::create();
 
 $start_time = microtime(true);
 //////////////////////////////////////////////////////////////////////////
-$records_count = 10000;
+$records_count = 100000;
 
 $csv_file_path = 'data/user_test.csv';
 //$csv_file_path = 'data/user.csv';
@@ -47,7 +47,7 @@ for ($i = 0; $i < $records_count; $i++) {
 
 
 fclose($csv_file);
-echo 'writed';
+echo 'writed<br>';
 
 $end_time = microtime(true);
 $execution_time = $end_time - $start_time;

@@ -2,7 +2,7 @@
   "host": "192.168.1.228",
   "username": "gdit_ftp",
   "password": "gdit6385",
-  "remotePath": "/htdocs/import_export_records",
+  "remotePath": "/htdocs/ten_mill_recs",
   "protocol": "ftp",
   "port": 0,
   "fileNameEncoding": "utf8",
