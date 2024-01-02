@@ -1,0 +1,90 @@
+{
+  "ftp://gdit_ftp@192.168.56.200": {
+    "htdocs": {
+      "training": {
+        "README.md": {
+          "type": "-",
+          "size": 20,
+          "lmtime": 0,
+          "modified": false
+        },
+        "app": {},
+        "composer.json": {
+          "type": "-",
+          "size": 271,
+          "lmtime": 0,
+          "modified": false
+        },
+        "composer.lock": {
+          "type": "-",
+          "size": 571,
+          "lmtime": 0,
+          "modified": false
+        },
+        "composer.phar": {
+          "type": "-",
+          "size": 2393294,
+          "lmtime": 0,
+          "modified": false
+        },
+        "core": {},
+        "public": {},
+        "vendor": {}
+      },
+      "import_export_records": {
+        "composer.json": {
+          "type": "-",
+          "size": 53,
+          "lmtime": 1703578220838.942,
+          "modified": false
+        },
+        "composer.lock": {
+          "type": "-",
+          "size": 570,
+          "lmtime": 1703574561000,
+          "modified": false
+        },
+        "css": {
+          "bootstrap": {
+            "bootstrap.min.css": {
+              "type": "-",
+              "size": 195504,
+              "lmtime": 1702440838871.6646,
+              "modified": false
+            }
+          },
+          "login.css": {
+            "type": "-",
+            "size": 348,
+            "lmtime": 1703056934975.1562,
+            "modified": false
+          }
+        },
+        "index.php": {
+          "type": "-",
+          "size": 114,
+          "lmtime": 1703581972622.2563,
+          "modified": false
+        },
+        "js": {
+          "boostrap": {
+            "bootstrap.min.js": {
+              "type": "-",
+              "size": 80463,
+              "lmtime": 1702440838874.5957,
+              "modified": false
+            }
+          }
+        },
+        "test.php": {
+          "type": "-",
+          "size": 113,
+          "lmtime": 1703582206801.4817,
+          "modified": false
+        },
+        "vendor": {}
+      }
+    }
+  },
+  "$version": 1
+}

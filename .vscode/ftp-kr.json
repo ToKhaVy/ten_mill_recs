@@ -1,0 +1,13 @@
+{
+  "host": "192.168.56.200",
+  "username": "gdit_ftp",
+  "password": "gdit6385",
+  "remotePath": "/htdocs/import_export_records",
+  "protocol": "ftp",
+  "port": 0,
+  "fileNameEncoding": "utf8",
+  "autoUpload": true,
+  "autoDelete": true,
+  "autoDownload": false,
+  "ignore": [".git", "/.vscode"]
+}
