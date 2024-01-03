@@ -29,6 +29,7 @@ if ($result_truncate) {
 }
 
 $csv_file_path = 'data/user_test.csv';
+//$csv_file_path = 'data/user_100k.csv';
 
 // Read file
 $csv_read = fopen($csv_file_path, 'r');

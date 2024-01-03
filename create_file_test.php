@@ -15,9 +15,10 @@ $faker = Factory::create();
 
 $start_time = microtime(true);
 //////////////////////////////////////////////////////////////////////////
-$records_count = 1000000;
+$records_count = 100;
 
-$csv_file_path = 'data/user_test.csv';
+//$csv_file_path = 'data/user_100k.csv';
+$csv_file_path = 'data/user_100.csv';
 
 $csv_header = ['ID', 'FirstName', 'LastName', 'Address', 'Birthday'];
 

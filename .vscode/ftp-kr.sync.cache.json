@@ -8,6 +8,12 @@
           "lmtime": 0,
           "modified": false
         },
+        "batch_insert.php": {
+          "type": "-",
+          "size": 0,
+          "lmtime": 0,
+          "modified": false
+        },
         "composer.json": {
           "type": "-",
           "size": 58,
@@ -22,8 +28,14 @@
         },
         "create_file.php": {
           "type": "-",
-          "size": 1234,
+          "size": 1259,
           "lmtime": 1704171746588.937,
+          "modified": true
+        },
+        "create_file_test.php": {
+          "type": "-",
+          "size": 1263,
+          "lmtime": 0,
           "modified": false
         },
         "css": {},
@@ -43,15 +55,15 @@
         },
         "index.php": {
           "type": "-",
-          "size": 2181,
+          "size": 2142,
           "lmtime": 0,
-          "modified": false
+          "modified": true
         },
         "index_test.php": {
           "type": "-",
-          "size": 2184,
+          "size": 1991,
           "lmtime": 0,
-          "modified": false
+          "modified": true
         },
         "js": {},
         "test1.php": {

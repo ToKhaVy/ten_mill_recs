@@ -1,36 +1,11 @@
-
 <?php
 require 'vendor/autoload.php';
 require 'db_connect.php';
 
-use Faker\Factory;
-
-$faker = Factory::create();
-
-// echo $faker->firstName . '<br>';
-// echo $faker->lastName . '<br>';
-// echo $faker->address . '<br>';
-// echo $faker->date('M-d-Y') . '<br>';
-
-
 //////////////////////////////////////////////////////////////////////////
 $start_time = microtime(true);
-
-$records_count = 10000000;
-
-$csv_file_path = 'data/user.csv';
-
-//Read file
-$csv_read = fopen($csv_file_path, 'r');
-
-if ($csv_read === false) {
-    // Handle error if the file couldn't be opened
-    die('Unable to open file for reading.');
-} else echo 'Open file succcessfully<br>';
-
-$header = fgetcsv($csv_read);
-
-$sql_truncate = "TRUNCATE TABLE `user`";
+//Truncate table
+$sql_truncate = " TRUNCATE TABLE `user`";
 $result_truncate = mysqli_query($conn, $sql_truncate);
 
 if ($result_truncate) {
@@ -39,39 +14,64 @@ if ($result_truncate) {
     echo 'Failed: ' . mysqli_error($conn);
 }
 
-//Display a table header
-//echo "<table border='1'>";
+$csv_file_path = 'data/user.csv';
 
-// Read each line from the CSV file and display the data
-while (($row = fgetcsv($csv_read)) !== false) {
-    // echo "<tr>";
-    // foreach ($row as $value) {
-    //     echo "<td>$value</td>";
-    // }
-    // echo "</tr>";
-    $id = mysqli_real_escape_string($conn, $row[0]);
-    $first_name = mysqli_real_escape_string($conn, $row[1]);
-    $last_name  = mysqli_real_escape_string($conn, $row[2]);
-    $address = mysqli_real_escape_string($conn, $row[3]);
-    $birthday = mysqli_real_escape_string($conn, $row[4]);
+
+// Read file
+$csv_read = fopen($csv_file_path, 'r');
+
+if ($csv_read === false) {
+    // Handle error if the file couldn't be opened
+    die('Unable to open file for reading.');
+} else echo 'Open file succcessfully<br>';
+
+// Skip the header
+$header = fgetcsv($csv_read);
+
+$records_count = 10000000;
+echo $records_count . '<br>';
+
+$batch_size = 1000;
+
+
+for ($i = 0; $i < $records_count; $i += $batch_size) {
+    $value = array();
+
+    for ($j = 0; $j < $batch_size; $j++) {
+
+        $row = fgetcsv($csv_read);
+        if ($row == false) {
+            break;
+        } else {
+            $id = mysqli_real_escape_string($conn, $row[0]);
+            $first_name = mysqli_real_escape_string($conn, $row[1]);
+            $last_name  = mysqli_real_escape_string($conn, $row[2]);
+            $address = mysqli_real_escape_string($conn, $row[3]);
+            $birthday = mysqli_real_escape_string($conn, $row[4]);
+            //Add value to the batch
+            $value[] = "('$id', '$first_name', '$last_name', '$address', '$birthday')";
+        }
+    }
+    if ($row == false) {
+        break;
+    }
+    //echo 'j = ' . $j . '<br>';
+    //echo 'id = ' . $id . '<br>';
+    //echo $value[1] . '<br>';
+    //SELECT COUNT(ID) FROM `user`
     $sql = " INSERT INTO `user`(`ID`, `FirstName`, `LastName`, `Address`,`Birthday`) 
-    VALUES ('$id','$first_name','$last_name','$address','$birthday') ";
-
+            VALUES " . implode(",", $value);
+    //echo 'SQL query: ' . $sql . '<br>';
     $result = mysqli_query($conn, $sql);
 
     if (!$result) {
-        echo 'Failed: ' . mysqli_error($conn) . $id . '<br>';
+        echo 'Failed: ' . mysqli_error($conn) .  '<br>';
+        break;
     }
+
+    //echo 'i = ' . $i . '<br>';
 }
 
-echo $id . '<br>';
-
-
-
-// echo "</table>";
-
-fclose($csv_file);
-echo 'Readed<br>';
 
 $end_time = microtime(true);
 $execution_time = $end_time - $start_time;
