@@ -66,6 +66,9 @@ echo $id . '<br>';
 fclose($csv_file);
 echo 'Readed<br>';
 
+// Close the database connection
+mysqli_close($conn);
+
 $end_time = microtime(true);
 $execution_time = $end_time - $start_time;
 echo "Read file: " . number_format($execution_time, 4) . " seconds";

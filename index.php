@@ -33,6 +33,7 @@ echo $records_count . '<br>';
 
 $batch_size = 1000;
 
+mysqli_begin_transaction($conn);
 
 for ($i = 0; $i < $records_count; $i += $batch_size) {
     $value = array();
@@ -65,6 +66,7 @@ for ($i = 0; $i < $records_count; $i += $batch_size) {
     $result = mysqli_query($conn, $sql);
 
     if (!$result) {
+        mysqli_rollback($conn);
         echo 'Failed: ' . mysqli_error($conn) .  '<br>';
         break;
     }
@@ -72,6 +74,13 @@ for ($i = 0; $i < $records_count; $i += $batch_size) {
     //echo 'i = ' . $i . '<br>';
 }
 
+mysqli_commit($conn);
+
+// Close the database connection
+mysqli_close($conn);
+
+fclose($csv_file);
+echo 'Readed<br>';
 
 $end_time = microtime(true);
 $execution_time = $end_time - $start_time;

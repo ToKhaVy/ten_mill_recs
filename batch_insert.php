@@ -14,8 +14,8 @@ if ($result_truncate) {
     echo 'Failed: ' . mysqli_error($conn);
 }
 
-//$csv_file_path = 'data/user_test.csv';
-$csv_file_path = 'data/user_100k.csv';
+$csv_file_path = 'data/user_test.csv';
+//$csv_file_path = 'data/user_100k.csv';
 //$csv_file_path = 'data/user_100.csv';
 
 // Read file
@@ -29,11 +29,12 @@ if ($csv_read === false) {
 // Skip the header
 $header = fgetcsv($csv_read);
 
-$records_count = 100000;
+$records_count = 1000000;
 echo $records_count . '<br>';
 
-$batch_size = 5000;
+$batch_size = 1000;
 
+mysqli_begin_transaction($conn);
 
 for ($i = 0; $i < $records_count; $i += $batch_size) {
     $value = array();
@@ -60,12 +61,16 @@ for ($i = 0; $i < $records_count; $i += $batch_size) {
     //echo 'id = ' . $id . '<br>';
     //echo $value[1] . '<br>';
     //SELECT COUNT(ID) FROM `user_test`
+
+
+
     $sql = " INSERT INTO `user_test`(`ID`, `FirstName`, `LastName`, `Address`,`Birthday`) 
             VALUES " . implode(",", $value);
     //echo 'SQL query: ' . $sql . '<br>';
     $result = mysqli_query($conn, $sql);
 
     if (!$result) {
+        mysqli_rollback($conn);
         echo 'Failed: ' . mysqli_error($conn) .  '<br>';
         break;
     }
@@ -73,6 +78,13 @@ for ($i = 0; $i < $records_count; $i += $batch_size) {
     //echo 'i = ' . $i . '<br>';
 }
 
+mysqli_commit($conn);
+
+// Close the database connection
+mysqli_close($conn);
+
+fclose($csv_file);
+echo 'Readed<br>';
 
 $end_time = microtime(true);
 $execution_time = $end_time - $start_time;
