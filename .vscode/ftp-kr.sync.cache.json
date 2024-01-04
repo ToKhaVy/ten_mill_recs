@@ -4,14 +4,14 @@
       "ten_mill_recs": {
         "README.md": {
           "type": "-",
-          "size": 23,
-          "lmtime": 0,
+          "size": 4884,
+          "lmtime": 1704363977241.4001,
           "modified": false
         },
         "batch_export.php": {
           "type": "-",
           "size": 1820,
-          "lmtime": 1704361900919.3706,
+          "lmtime": 1704363706021.3452,
           "modified": false
         },
         "batch_insert.php": {
