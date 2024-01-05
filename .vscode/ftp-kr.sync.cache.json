@@ -10,8 +10,8 @@
         },
         "batch_export.php": {
           "type": "-",
-          "size": 1820,
-          "lmtime": 1704363706021.3452,
+          "size": 1848,
+          "lmtime": 1704428460320.1648,
           "modified": false
         },
         "batch_insert.php": {
@@ -32,6 +32,12 @@
           "lmtime": 0,
           "modified": false
         },
+        "conditional_export.php": {
+          "type": "-",
+          "size": 0,
+          "lmtime": 1704446434596.2434,
+          "modified": false
+        },
         "create_file.php": {
           "type": "-",
           "size": 1259,
@@ -46,11 +52,23 @@
         },
         "css": {},
         "data": {
+          "batch_export_data.csv": {
+            "type": "-",
+            "size": 49087649,
+            "lmtime": 1704351872009.046,
+            "modified": true
+          },
           "export_data.csv": {
             "type": "-",
             "size": 54490919,
             "lmtime": 1704332435968.3252,
             "modified": true
+          },
+          "select_into_outfile.csv": {
+            "type": "-",
+            "size": 926971676,
+            "lmtime": 0,
+            "modified": false
           },
           "user.csv": {
             "type": "-",
@@ -61,7 +79,7 @@
           "user_100.csv": {
             "type": "-",
             "size": 8248,
-            "lmtime": 0,
+            "lmtime": 1704253981000,
             "modified": false
           },
           "user_100k.csv": {
@@ -75,12 +93,6 @@
             "size": 84700195,
             "lmtime": 0,
             "modified": false
-          },
-          "batch_export_data.csv": {
-            "type": "-",
-            "size": 0,
-            "lmtime": 1704351872009.046,
-            "modified": false
           }
         },
         "db_connect.php": {
@@ -91,21 +103,53 @@
         },
         "index.php": {
           "type": "-",
-          "size": 2504,
-          "lmtime": 0,
-          "modified": true
+          "size": 1106,
+          "lmtime": 1704448911845.6067,
+          "modified": false
         },
         "js": {},
         "load_data_infile.php": {
           "type": "-",
-          "size": 903,
-          "lmtime": 0,
+          "size": 1312,
+          "lmtime": 1704436146632.0054,
           "modified": false
         },
         "prepared_statement.php": {
           "type": "-",
           "size": 2347,
           "lmtime": 1704343195210.1343,
+          "modified": false
+        },
+        "report": {
+          "1_Huy_Le_Ten_million_records_import.docx": {
+            "type": "-",
+            "size": 38452,
+            "lmtime": 1704446687657.1116,
+            "modified": false
+          },
+          "3_Huy_Le_Ten_million_records_conditional_export.docx": {
+            "type": "-",
+            "size": 32769,
+            "lmtime": 1704446696998.9614,
+            "modified": false
+          },
+          "2_Huy_Le_Ten_million_records_export.docx": {
+            "type": "-",
+            "size": 33126,
+            "lmtime": 1704446592429.455,
+            "modified": false
+          },
+          "Import_10_mill_records.docx": {
+            "type": "-",
+            "size": 28948,
+            "lmtime": 1704446609646.986,
+            "modified": false
+          }
+        },
+        "select_into_outfile.php": {
+          "type": "-",
+          "size": 768,
+          "lmtime": 1704446374246.623,
           "modified": false
         },
         "single_export.php": {
@@ -118,6 +162,12 @@
           "type": "-",
           "size": 2091,
           "lmtime": 0,
+          "modified": false
+        },
+        "upload_file.php": {
+          "type": "-",
+          "size": 1896,
+          "lmtime": 1704449427623.879,
           "modified": false
         },
         "vendor": {}
