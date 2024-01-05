@@ -26,7 +26,8 @@ $records_count = 10000000;
 echo $records_count . '<br>';
 
 // Set the batch size
-$batch_size = 200000;
+$batch_size = 570000;
+echo $batch_size . '<br>';
 
 // Fetch and write data to the CSV file in batches
 $start = 0;

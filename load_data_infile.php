@@ -2,8 +2,22 @@
 require 'vendor/autoload.php';
 require 'db_connect.php';
 
-$csv_file_path = 'data/user_100.csv';
+
+$start_time = microtime(true);
+
+//Truncate table
+$sql_truncate = " TRUNCATE TABLE `user_test`";
+$result_truncate = mysqli_query($conn, $sql_truncate);
+
+if ($result_truncate) {
+    echo 'Truncate table successfully<br>';
+} else {
+    echo 'Failed: ' . mysqli_error($conn);
+}
+
 // Read file
+$csv_file_path = '/htdocs/ten_mill_recs/data/user.csv';
+
 $csv_read = fopen($csv_file_path, 'r');
 
 if ($csv_read === false) {
@@ -11,21 +25,31 @@ if ($csv_read === false) {
     die('Unable to open file for reading.');
 } else echo 'Open file succcessfully<br>';
 
-$table_name = `user`;
 
 $sql = " LOAD DATA
-            [LOW_PRIORITY | CONCURRENT] [LOCAL]
             INFILE '$csv_file_path'
-            [REPLACE | IGNORE]
-            INTO TABLE $table_name
-            [CHARACTER SET 'utf8']
-            [{FIELDS | COLUMNS}
-                [TERMINATED BY ',']
-                [[OPTIONALLY] ENCLOSED BY 'char']
-                [ESCAPED BY 'char']
-            ]
-            [LINES
-                [STARTING BY 'string']
-                [TERMINATED BY 'string']
-            ]
-            [IGNORE 1 {LINES | ROWS}] ";
+            INTO TABLE user_test
+            FIELDS
+                TERMINATED BY ','
+                OPTIONALLY ENCLOSED BY '\"'
+            
+            LINES
+                TERMINATED BY '\\n'
+            
+            IGNORE 1 LINES ";
+
+echo $sql . '<br>';
+
+$result = mysqli_query($conn, $sql);
+
+$end_time = microtime(true);
+$execution_time = $end_time - $start_time;
+
+if (!$result) {
+    echo "Error: " . $conn->error;
+} else {
+    echo "Data loaded successfully.\n";
+    echo "Load data completed in " . number_format($execution_time, 4) . " seconds.";
+}
+
+mysqli_close($conn);
