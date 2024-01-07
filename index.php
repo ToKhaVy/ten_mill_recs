@@ -14,14 +14,14 @@
     </form>
 
     <form action="conditional_export.php" method="post">
-        <label for="sort_field">Sort by Field:</label>
-        <select name="sort_field" id="sort_field">
+        <label for="search-field">Search by Field:</label>
+        <select name="search-field" id="search-field">
             <option value="Address">Address</option>
             <option value="Birthday">Birthday</option>
             <!-- Add more options based on your table columns -->
         </select>
 
-        <label for="sort-order">Sort Order:</label>
+        <label for="sort-order">Sort by birthday:</label>
         <select name="sort-order" id="sort-order">
             <option value="ASC">Ascending</option>
             <option value="DESC">Descending</option>
