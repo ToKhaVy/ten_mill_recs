@@ -6,7 +6,7 @@ require 'db_connect.php';
 $start_time = microtime(true);
 
 //Truncate table
-$sql_truncate = " TRUNCATE TABLE `user_test`";
+$sql_truncate = " TRUNCATE TABLE `user`";
 $result_truncate = mysqli_query($conn, $sql_truncate);
 
 if ($result_truncate) {
@@ -28,7 +28,7 @@ if ($csv_read === false) {
 
 $sql = " LOAD DATA
             INFILE '$csv_file_path'
-            INTO TABLE user_test
+            INTO TABLE user
             FIELDS
                 TERMINATED BY ','
                 OPTIONALLY ENCLOSED BY '\"'

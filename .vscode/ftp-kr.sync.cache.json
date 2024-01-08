@@ -32,12 +32,6 @@
           "lmtime": 0,
           "modified": false
         },
-        "conditional_export.php": {
-          "type": "-",
-          "size": 0,
-          "lmtime": 1704446434596.2434,
-          "modified": false
-        },
         "create_file.php": {
           "type": "-",
           "size": 1259,
@@ -101,50 +95,36 @@
           "lmtime": 0,
           "modified": false
         },
+        "export_batched.php": {
+          "type": "-",
+          "size": 1874,
+          "lmtime": 1704709291152.4573,
+          "modified": false
+        },
+        "export_select_into_outfile.php": {
+          "type": "-",
+          "size": 1775,
+          "lmtime": 1704709425306.0603,
+          "modified": false
+        },
         "index.php": {
           "type": "-",
-          "size": 1106,
-          "lmtime": 1704448911845.6067,
+          "size": 1501,
+          "lmtime": 1704708247103.6243,
           "modified": false
         },
         "js": {},
         "load_data_infile.php": {
           "type": "-",
-          "size": 1312,
+          "size": 1302,
           "lmtime": 1704436146632.0054,
-          "modified": false
+          "modified": true
         },
         "prepared_statement.php": {
           "type": "-",
           "size": 2347,
           "lmtime": 1704343195210.1343,
           "modified": false
-        },
-        "report": {
-          "1_Huy_Le_Ten_million_records_import.docx": {
-            "type": "-",
-            "size": 38452,
-            "lmtime": 1704446687657.1116,
-            "modified": false
-          },
-          "3_Huy_Le_Ten_million_records_conditional_export.docx": {
-            "type": "-",
-            "size": 32769,
-            "lmtime": 1704446696998.9614,
-            "modified": false
-          },
-          "2_Huy_Le_Ten_million_records_export.docx": {
-            "type": "-",
-            "size": 33126,
-            "lmtime": 1704446592429.455,
-            "modified": false
-          },
-          "Import_10_mill_records.docx": {
-            "type": "-",
-            "size": 28948,
-            "lmtime": 1704446609646.986,
-            "modified": false
-          }
         },
         "select_into_outfile.php": {
           "type": "-",
@@ -166,8 +146,8 @@
         },
         "upload_file.php": {
           "type": "-",
-          "size": 1896,
-          "lmtime": 1704449427623.879,
+          "size": 1760,
+          "lmtime": 1704685912082.0232,
           "modified": false
         },
         "vendor": {}
