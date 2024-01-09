@@ -42,20 +42,19 @@ while ($start < $records_count) {
         die("Error in SQL query: " . mysqli_error($conn));
     }
 
+    // Check if there are no more records
+    if (mysqli_num_rows($result) == 0) {
+        //echo 1;
+        break;
+    }
+
     // Fetch and write data to the CSV file
     while ($row = mysqli_fetch_assoc($result)) {
         fputcsv($csv_file, $row);
     }
 
-
     // Increment the start point for the next batch
     $start += $batch_size;
-
-    // Check if there are no more records
-    if (mysqli_num_rows($result) < $batch_size) {
-        //echo 1;
-        break;
-    }
 }
 
 // Close the CSV file
