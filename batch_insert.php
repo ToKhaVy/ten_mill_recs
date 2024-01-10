@@ -4,8 +4,10 @@ require 'db_connect.php';
 
 //////////////////////////////////////////////////////////////////////////
 $start_time = microtime(true);
+
+$table_name = 'user';
 //Truncate table
-$sql_truncate = " TRUNCATE TABLE `user_test`";
+$sql_truncate = " TRUNCATE TABLE $table_name";
 $result_truncate = mysqli_query($conn, $sql_truncate);
 
 if ($result_truncate) {
@@ -14,9 +16,7 @@ if ($result_truncate) {
     echo 'Failed: ' . mysqli_error($conn);
 }
 
-$csv_file_path = 'data/user_test.csv';
-//$csv_file_path = 'data/user_100k.csv';
-//$csv_file_path = 'data/user_100.csv';
+$csv_file_path = 'data/user.csv';
 
 // Read file
 $csv_read = fopen($csv_file_path, 'r');
@@ -29,54 +29,45 @@ if ($csv_read === false) {
 // Skip the header
 $header = fgetcsv($csv_read);
 
-$records_count = 1000000;
+$records_count = 10000000;
 echo $records_count . '<br>';
 
-$batch_size = 1000;
+$batch_size = 100000;
 
 mysqli_begin_transaction($conn);
 
-for ($i = 0; $i < $records_count; $i += $batch_size) {
-    $value = array();
+$value = array();
+$i = 0;
 
-    for ($j = 0; $j < $batch_size; $j++) {
+while ($row = fgetcsv($csv_read)) {
+    $i++;
+    $id = mysqli_real_escape_string($conn, $row[0]);
+    $first_name = mysqli_real_escape_string($conn, $row[1]);
+    $last_name  = mysqli_real_escape_string($conn, $row[2]);
+    $address = mysqli_real_escape_string($conn, $row[3]);
+    $birthday = mysqli_real_escape_string($conn, $row[4]);
 
-        $row = fgetcsv($csv_read);
-        if ($row == false) {
+    //echo $id . '<br>';
+    //Add value to the batch
+    $value[] = "('$id', '$first_name', '$last_name', '$address', '$birthday')";
+
+    if (count($value) == $batch_size || $i == $records_count) {
+        //echo count($value) . '<br>';
+        $insert_query = " INSERT INTO $table_name (ID, FirstName, LastName, Address,Birthday) 
+                          VALUES " . implode(",", $value);
+        //echo 'SQL query: ' . $insert_query . '<br>';
+        $result = mysqli_query($conn, $insert_query);
+
+        $value = [];
+
+        if (!$result) {
+            mysqli_rollback($conn);
+            echo 'Insert Failed: <br>';
             break;
-        } else {
-            $id = mysqli_real_escape_string($conn, $row[0]);
-            $first_name = mysqli_real_escape_string($conn, $row[1]);
-            $last_name  = mysqli_real_escape_string($conn, $row[2]);
-            $address = mysqli_real_escape_string($conn, $row[3]);
-            $birthday = mysqli_real_escape_string($conn, $row[4]);
-            //Add value to the batch
-            $value[] = "('$id', '$first_name', '$last_name', '$address', '$birthday')";
         }
     }
-    if ($row == false) {
-        break;
-    }
-    //echo 'j = ' . $j . '<br>';
-    //echo 'id = ' . $id . '<br>';
-    //echo $value[1] . '<br>';
-    //SELECT COUNT(ID) FROM `user_test`
-
-
-
-    $sql = " INSERT INTO `user_test`(`ID`, `FirstName`, `LastName`, `Address`,`Birthday`) 
-            VALUES " . implode(",", $value);
-    //echo 'SQL query: ' . $sql . '<br>';
-    $result = mysqli_query($conn, $sql);
-
-    if (!$result) {
-        mysqli_rollback($conn);
-        echo 'Failed: ' . mysqli_error($conn) .  '<br>';
-        break;
-    }
-
-    //echo 'i = ' . $i . '<br>';
 }
+
 
 mysqli_commit($conn);
 

@@ -16,8 +16,8 @@
         },
         "batch_insert.php": {
           "type": "-",
-          "size": 2610,
-          "lmtime": 1704787753567.0967,
+          "size": 2300,
+          "lmtime": 1704875878357.0813,
           "modified": false
         },
         "composer.json": {
@@ -145,29 +145,35 @@
           "modified": false
         },
         "sqlite": {
+          "batch_export.php": {
+            "type": "-",
+            "size": 1285,
+            "lmtime": 1704872576783.5916,
+            "modified": false
+          },
+          "batch_import.php": {
+            "type": "-",
+            "size": 2311,
+            "lmtime": 1704882516749.1013,
+            "modified": false
+          },
+          "create_tb.php": {
+            "type": "-",
+            "size": 350,
+            "lmtime": 1704882500512.9214,
+            "modified": false
+          },
           "index.php": {
             "type": "-",
-            "size": 16,
-            "lmtime": 1704785298271.8584,
+            "size": 1501,
+            "lmtime": 1704872140712.689,
             "modified": false
           },
-          "sqlite.db": {
+          "ten_mill_records.db": {
             "type": "-",
-            "size": 12288,
-            "lmtime": 1704776052995.7512,
+            "size": 1033199616,
+            "lmtime": 0,
             "modified": true
-          },
-          "sqlite_batch_import.php": {
-            "type": "-",
-            "size": 703,
-            "lmtime": 1704794951031.8472,
-            "modified": false
-          },
-          "sqlite_create_tb.php": {
-            "type": "-",
-            "size": 592,
-            "lmtime": 1704786514793.2314,
-            "modified": false
           }
         },
         "upload_file.php": {
