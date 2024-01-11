@@ -1,43 +1,73 @@
 <?php
+
+//////////////////////////////////////////////////////////////////////////
+$start_time = microtime(true);
 // Open the SQLite database
 $db = new SQLite3('ten_mill_records.db');
 
 // Specify the table you want to export
 $table_name = 'user';
 
-// Set response headers for file download (CSV in this example)
-header('Content-Type: text/csv');
-header('Content-Disposition: attachment; filename="exported_data.csv"');
+// Set file path to write
+$csv_file_path = '../data/sqlite_batch_export.csv';
 
-// Open a file handle for writing CSV data
-$output = fopen('php://output', 'w');
+// Open file to write
+$csv_write = fopen($csv_file_path, 'w');
+if (!$csv_write) {
+    die('Error: Unable to open file for writing.' . PHP_EOL);
+}
 
 // Write the header row
-$query = "PRAGMA table_info($table_name)";
-$result = $db->query($query);
-$columns = [];
-while ($column = $result->fetchArray(SQLITE3_ASSOC)) {
-    $columns[] = $column['name'];
-}
-fputcsv($output, $columns);
+$header = array('ID', 'FirstName', 'LastName', 'Address', 'Birthday');
+fputcsv($csv_write, $header);
 
-// Fetch and write the data rows in batches
-$batchSize = 1000; // Adjust based on performance
-$query = " SELECT ID,FirstName,LastName,Address,Birthday FROM $table_name ";
-$result = $db->query($query);
-while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-    fputcsv($output, $row);
+$batch_size = 600000;
 
-    // Check if a batch is complete and reset the file handle
-    if (ftell($output) >= $batchSize) {
-        fclose($output);
-        $output = fopen('php://output', 'w');
-        fputcsv($output, $columns); // Write the header row again
+$start = 0;
+
+$db->exec('BEGIN');
+
+while (true) {
+    // Adjust the LIMIT clause based on the batch size
+    $batch_query = " SELECT ID,FirstName,LastName,Address,Birthday FROM user LIMIT $batch_size OFFSET $start ";
+
+    // Perform the query
+    $batch_result = $db->query($batch_query);
+
+    if (!$batch_result) {
+        die("Error in SQL query: " . $db->lastErrorMsg());
     }
+
+    // Check if the first row is false, indicating no more rows
+    $first_row = $batch_result->fetchArray(SQLITE3_ASSOC);
+    if ($first_row === false) {
+        break;
+    }
+
+    // Process the first row
+    fputcsv($csv_write, $first_row);
+
+    // Fetch and write data to the CSV file
+    while ($row = $batch_result->fetchArray(SQLITE3_ASSOC)) {
+        fputcsv($csv_write, $row);
+        if (!$row) {
+            break;
+        }
+    }
+
+    // Increment the start point for the next batch
+    $start += $batch_size;
 }
+
+$db->exec('COMMIT');
 
 // Close the file handle
-fclose($output);
+fclose($csv_write);
 
 // Close the SQLite database
 $db->close();
+
+$end_time = microtime(true);
+$execution_time = $end_time - $start_time;
+echo "Read file: " . number_format($execution_time, 4) . " seconds";
+//////////////////////////////////////////////////////////////////////////
