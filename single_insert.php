@@ -28,8 +28,8 @@ if ($result_truncate) {
     echo 'Failed: ' . mysqli_error($conn);
 }
 
-$csv_file_path = 'data/user_test.csv';
-//$csv_file_path = 'data/user_100k.csv';
+$csv_file_path = 'data/user_100.csv';
+
 
 // Read file
 $csv_read = fopen($csv_file_path, 'r');

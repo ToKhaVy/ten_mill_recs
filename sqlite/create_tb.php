@@ -1,7 +1,7 @@
 <?php
 $db = new SQLite3('ten_mill_records.db');
 
-$sql = ' CREATE TABLE user (
+$sql = ' CREATE TABLE user_test (
          ID         INT PRIMARY KEY,
          FirstName  TEXT,
          LastName   TEXT,

@@ -28,7 +28,7 @@ if ($csv_read === false) {
 // Skip the header
 $header = fgetcsv($csv_read);
 
-$batch_size = 1000;
+$batch_size = 5000;
 //echo 'batch size' . $batch_size . '<br>';
 
 $value = array();

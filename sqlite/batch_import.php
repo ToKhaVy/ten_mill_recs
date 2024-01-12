@@ -7,8 +7,6 @@ $db = new SQLite3('ten_mill_records.db');
 // Specify the table you want to truncate
 $table_name = "user";
 
-$db->exec('BEGIN');
-
 // Truncate the table by executing a DELETE statement without a WHERE clause
 $delete_query = " DELETE FROM  $table_name ";
 if ($db->exec($delete_query)) {
@@ -30,10 +28,12 @@ if ($csv_read === false) {
 // Skip the header
 $header = fgetcsv($csv_read);
 
-$batch_size = 5000;
+$batch_size = 50000;
 //echo 'batch size' . $batch_size . '<br>';
 
 $value = array();
+
+$db->exec('BEGIN');
 
 while ($row = fgetcsv($csv_read)) {
 

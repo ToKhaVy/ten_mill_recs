@@ -21,7 +21,7 @@ if (!$csv_write) {
 $header = array('ID', 'FirstName', 'LastName', 'Address', 'Birthday');
 fputcsv($csv_write, $header);
 
-$batch_size = 600000;
+$batch_size = 100000;
 
 $start = 0;
 
@@ -50,9 +50,6 @@ while (true) {
     // Fetch and write data to the CSV file
     while ($row = $batch_result->fetchArray(SQLITE3_ASSOC)) {
         fputcsv($csv_write, $row);
-        if (!$row) {
-            break;
-        }
     }
 
     // Increment the start point for the next batch
